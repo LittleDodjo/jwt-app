@@ -1,6 +1,7 @@
 <?php
 
-use Illuminate\Http\Request;
+use App\Http\Controllers\Api\User\AuthController;
+use App\Http\Controllers\Api\User\RoomController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,6 +15,25 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+
+// маршрутиризация для работы с пользователем
+Route::controller(AuthController::class)->group(function () {
+    Route::post('login', 'login');
+    Route::post('register', 'register');
+    Route::post('logout', 'logout');
+    Route::post('refresh', 'refresh');
+
 });
+
+
+Route::controller(RoomController::class)->group(function (){
+    Route::get('rooms?page={page}', 'index');
+});
+
+//Route::controller(TodoController::class)->group(function () {
+//    Route::get('todos', 'index');
+//    Route::post('todo', 'store');
+//    Route::get('todo/{id}', 'show');
+//    Route::put('todo/{id}', 'update');
+//    Route::delete('todo/{id}', 'destroy');
+//});
