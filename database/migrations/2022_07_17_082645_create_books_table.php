@@ -18,7 +18,7 @@ return new class extends Migration
             $table->integer('user_id');
             $table->integer('room_id');
             $table->date('arrive_date');
-            $table->boolean('book_status');
+            $table->boolean('book_status')->default(0);
         });
     }
 

@@ -3,6 +3,8 @@
 namespace App\Http\Requests\Api\Room;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
+
 
 class RoomRequest extends FormRequest
 {
@@ -13,7 +15,7 @@ class RoomRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return Auth::check();
     }
 
     /**
@@ -24,7 +26,7 @@ class RoomRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+           'arrive_date' => 'date_format:Y-m-d|after:today'
         ];
     }
 }

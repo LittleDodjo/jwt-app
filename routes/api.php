@@ -29,7 +29,11 @@ Route::controller(AuthController::class)->group(function () {
 Route::controller(RoomController::class)->group(function (){
     Route::get('rooms', 'index');
     Route::get('room/{id}', 'GetRoom');
-    Route::post('room/{id}/unbook', 'Unbook');
+    Route::delete('room/{id}/unbook', 'Unbook');
+    Route::post('room/{id}/book', 'Book');
+    Route::patch('room/{id}/update/status', 'UpdateStatus');
+    Route::patch('room/{id}/update/date', 'UpdateArriveDate');
+
 });
 
 //Route::controller(TodoController::class)->group(function () {
