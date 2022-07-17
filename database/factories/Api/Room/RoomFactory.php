@@ -1,6 +1,6 @@
 <?php
 
-namespace Database\Factories;
+namespace Database\Factories\Api\Room;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -17,7 +17,10 @@ class RoomFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'room_floor' => fake()->numberBetween(0, 50),
+            'room_number' => fake()->numberBetween(0, 500),
+            'short_desc' => fake()->text(200),
+            'is_book' => fake()->numberBetween(0, 1)
         ];
     }
 }

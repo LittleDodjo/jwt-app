@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\Api;
+namespace App\Models\Api\Room;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -9,12 +9,12 @@ class Room extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
+    public $timestamps = false;
+
+    public $fillable = [
         'room_number',
         'room_floor',
         'short_desc',
-        'book_status',
-        'user_id',
-        'arrive_date',
+        'is_book'
     ];
 }

@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\User\AuthController;
-use App\Http\Controllers\Api\User\RoomController;
+use App\Http\Controllers\Api\Room\RoomController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -27,7 +27,9 @@ Route::controller(AuthController::class)->group(function () {
 
 
 Route::controller(RoomController::class)->group(function (){
-    Route::get('rooms?page={page}', 'index');
+    Route::get('rooms', 'index');
+    Route::get('room/{id}', 'GetRoom');
+    Route::post('room/{id}/unbook', 'Unbook');
 });
 
 //Route::controller(TodoController::class)->group(function () {
