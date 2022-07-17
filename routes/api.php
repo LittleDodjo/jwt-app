@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\User\AuthController;
 use App\Http\Controllers\Api\Room\RoomController;
+use App\Http\Controllers\Api\User\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -38,3 +39,8 @@ Route::controller(RoomController::class)->group(function (){
 });
 
 
+Route::controller(UserController::class)->group(function (){
+    Route::get('users', 'index');
+    Route::get('user/{id}', 'GetUser');
+    Route::get('user/{id}/rooms', 'GetUserBookedRooms');
+});

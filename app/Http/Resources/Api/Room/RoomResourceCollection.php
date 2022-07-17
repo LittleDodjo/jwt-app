@@ -19,10 +19,7 @@ class RoomResourceCollection extends ResourceCollection
         $count = $this->collection->count();
         return [
             'count' => $count,
-            'data' => $this->collection,
-//            'per_page' => $this->perPage(),
-//            'current_page' => $this->currentPage(),
-//            'total_pages' => $this->lastPage(),
+            'data' => $this->collection
         ];
     }
 }
