@@ -25,7 +25,8 @@ Route::controller(AuthController::class)->group(function () {
 
 });
 
-
+// работа с комнатами
+//маршруты для работы с комнатами
 Route::controller(RoomController::class)->group(function (){
     Route::get('rooms', 'index');
     Route::get('room/{id}', 'GetRoom');
@@ -36,10 +37,4 @@ Route::controller(RoomController::class)->group(function (){
 
 });
 
-//Route::controller(TodoController::class)->group(function () {
-//    Route::get('todos', 'index');
-//    Route::post('todo', 'store');
-//    Route::get('todo/{id}', 'show');
-//    Route::put('todo/{id}', 'update');
-//    Route::delete('todo/{id}', 'destroy');
-//});
+

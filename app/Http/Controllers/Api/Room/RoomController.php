@@ -50,6 +50,11 @@ class RoomController extends Controller
 
     }
 
+    /**
+     * Получить комнату по ID
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function GetRoom($id)
     {
         if (Room::where('id', $id)->exists()) {
@@ -65,6 +70,12 @@ class RoomController extends Controller
             ], 404);
     }
 
+    /**
+     * Снять бронирование
+     * @param RoomRequest $request
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function Unbook(RoomRequest $request, $id)
     {
         if (!$this->RoomExists($id)) {
@@ -88,6 +99,12 @@ class RoomController extends Controller
         }
     }
 
+    /**
+     * Забронировать номер
+     * @param RoomRequest $request
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function Book(RoomRequest $request, $id){
         if (!$this->RoomExists($id)) {
             return response()->json(['error' => 'this room not found'], 404);
@@ -111,6 +128,12 @@ class RoomController extends Controller
         }
     }
 
+    /**
+     * Изменить статус бронирования
+     * @param RoomRequest $request
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function UpdateStatus(RoomRequest $request, $id){
         if($this->RoomExists($id) && $this->RoomIsBooked($id)){
             $user = Auth::user();
@@ -140,6 +163,12 @@ class RoomController extends Controller
         }
     }
 
+    /**
+     * Изменить дату прибытия
+     * @param RoomRequest $request
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function UpdateArriveDate(RoomRequest $request, $id){
         if($this->RoomExists($id) && $this->RoomIsBooked($id)){
             $user = Auth::user();
@@ -162,10 +191,20 @@ class RoomController extends Controller
     }
 
 
+    /**
+     * Проверить существует ли комната
+     * @param $roomId
+     * @return bool
+     */
     private function RoomExists($roomId){
         return (bool)Room::where('id', $roomId)->exists();
     }
 
+    /**
+     * Проверить забронирована ли комната
+     * @param $roomId
+     * @return bool
+     */
     private function RoomIsBooked($roomId){
         return (bool)Room::where('id', $roomId)->first()->is_book;
     }
