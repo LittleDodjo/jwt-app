@@ -40,6 +40,10 @@ class UserController extends Controller
             $book_data = Book::where('user_id', $id)->paginate($this->limit);
             $rooms = new UserBookResource($book_data);
             return response()->json([
+                'user' =>
+                    new UserResource(
+                        User::where('id', $id)->first()
+                    ),
                 'rooms' => $rooms
             ],200);
         }else{
